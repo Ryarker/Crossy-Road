@@ -37,7 +37,20 @@ public class Grass : Terrain
         }
 
         SpawnRandomTree(-limit - 1);
+        SpawnRandomTree(-limit - 2);
+        SpawnRandomTree(-limit - 3);
+        SpawnRandomTree(-limit - 4);
+        SpawnRandomTree(-limit - 5);
+        SpawnRandomTree(-limit - 6);
+        SpawnRandomTree(-limit - 7);
+        SpawnRandomTree(-limit - 8);
+        SpawnRandomTree(-limit - 9);
+        SpawnRandomTree(-limit - 10);
         SpawnRandomTree(limit + 1);
+        SpawnRandomTree(limit + 2);
+        SpawnRandomTree(limit + 3);
+        SpawnRandomTree(limit + 4);
+        SpawnRandomTree(limit + 5);
         
 
     }
