@@ -14,6 +14,10 @@ public class Duck : MonoBehaviour
     [SerializeField] int leftMoveLimit;
     [SerializeField] int rightMoveLimit;
     [SerializeField] int backMoveLimit;
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private AudioSource dieSoundEffect;
+    
+
     public UnityEvent<Vector3> onJumped;
     public UnityEvent<int> onGetCoin;
     public UnityEvent OnDie;
@@ -24,21 +28,26 @@ public class Duck : MonoBehaviour
         if(isMoveable)
         return;
         
+        
 
         if (DOTween.IsTweening(transform))
             return;
 
         Vector3 direction = Vector3.zero;
         if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+            jumpSoundEffect.Play();
             direction += Vector3.forward;
         }
         else if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+            jumpSoundEffect.Play();
             direction += Vector3.left;
         }
         else if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
+            jumpSoundEffect.Play();
             direction += Vector3.back;
         }
         else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+            jumpSoundEffect.Play();
             direction += Vector3.right;
         }
 
@@ -87,6 +96,7 @@ public void UpdateMoveLimit (int horizontalLimit, int backLimit) {
          return;   
         }
         transform.DOScaleY(0.1f,0.2f);
+        dieSoundEffect.Play();
         isMoveable = true;
         Invoke("Die", 3);
         }
@@ -102,9 +112,12 @@ public void UpdateMoveLimit (int horizontalLimit, int backLimit) {
             this.transform.SetParent(other.transform);
             Invoke("Die", 3);
             }
+            
         }
     }
+    
     private void Die () {
+
         OnDie.Invoke();
     }
 }

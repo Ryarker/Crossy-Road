@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] int value = 1;
     [SerializeField, Range(0,10)] float rotationSpeed = 1;
+    [SerializeField] private AudioSource coinCollectedSoundEffect;
 
     public int Value { get => value;}
 
@@ -14,6 +15,7 @@ public class Coin : MonoBehaviour
     {
         GetComponent<Collider>().enabled = false;
         rotationSpeed *= 5;
+        coinCollectedSoundEffect.Play();
         this.transform.DOJump(
             this.transform.position,
             1.5f,
